@@ -1,28 +1,29 @@
-import  React, { useEffect } from "react";
+import  React, { useEffect, useRef } from "react";
 
 import classes from "./Cockpit.css";
+import AuthContext from '../../context/auth-context';
 
-const cockpit = (prope) => {
+
+const cockpit = props => {
+
+    const toggelBtnRef = useRef(null);
 
     useEffect(() => {
-        
-        setTimeout(() => {
-            alert('hi there')
-        }, 1000);
+        toggelBtnRef.current.click();
     }, []);
 
     const assignedClasses = [];
 
     let btnClass = '';
 
-    if(prope.showPersons){
+    if(props.showPersons){
         btnClass = classes.Red;
     }
 
-    if (prope.persons.length <= 2) {
+    if (props.persons.length <= 2) {
       assignedClasses.push(classes.red); // classes = ['red']
     }
-    if (prope.persons.length <= 1) {
+    if (props.persons.length <= 1) {
       assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
@@ -31,9 +32,13 @@ const cockpit = (prope) => {
         <div className = {classes.Cockpit}>
             <h1>Hi, I'm a React App</h1>
              <p className={assignedClasses.join(' ')}>This is really working!</p>
-             <button className={btnClass} onClick={prope.clicked}>
+             <button ref={toggelBtnRef} className={btnClass} onClick={props.clicked}>
             Toggle Persons
              </button>
+             <AuthContext.Consumer>
+                 {context => <button onClick={context.login}> Log In </button>}
+             
+             </AuthContext.Consumer>
         </div>
     )
 }
