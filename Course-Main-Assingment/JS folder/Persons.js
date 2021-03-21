@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 import Person from "./Person/Person";
 
+
+
 class Persons extends Component {
 render() {
  return this.props.persons.map((person, index) => {
@@ -12,9 +14,9 @@ render() {
         age={person.age}
         key={person.id}
         changed={event => this.props.changed(event, person.id)}
-    
+        isAuth={this.props.isAuthenticated}
       />
-    ) } );
+       )})
   }
 };
  
