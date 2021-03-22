@@ -77,7 +77,7 @@ class App extends Component {
     
     return (
       <Aux>
-        <AudioContext.Provider value={{
+        <AuthContext.Provider value={{
           authenticated: this.state.authenticated, 
           login: this.loginHandler}} 
           >
@@ -87,7 +87,7 @@ class App extends Component {
        clicked = {this.togglePersonsHandler}
        />
         {persons}
-        </AudioContext.Provider>
+        </AuthContext.Provider>
       </Aux>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
